@@ -1,0 +1,22 @@
+[build]
+# Build the frontend only.  Netlify will install dependencies automatically.
+command = "npm run build --prefix frontend"
+# The built static site will be published from this directory.
+publish = "frontend/dist"
+
+[functions]
+# Directory where Netlify looks for functions.
+directory = "collector/functions"
+# Use esbuild bundler for faster and smaller functions.
+node_bundler = "esbuild"
+
+[[functions]]
+name = "scan"
+schedule = "0 22 * * *" # Run daily at 22:00 UTC (02:00 Asia/Dubai)
+
+[dev]
+# During local development you can proxy API calls to the functions.
+command = "npm run dev:frontend"
+autoLaunch = false
+
+# Feel free to define additional settings (headers, redirects) here.

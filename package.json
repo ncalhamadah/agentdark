@@ -1,0 +1,18 @@
+{
+  "name": "agentdark",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["frontend", "collector"],
+  "scripts": {
+    "install:frontend": "npm install --prefix frontend",
+    "install:collector": "npm install --prefix collector",
+    "install": "npm run install:frontend && npm run install:collector",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:collector": "npm run build --prefix collector || echo 'collector has no build step'",
+    "build": "npm run build:frontend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:collector": "netlify functions:serve --config netlify.toml",
+    "dev": "npm run dev:frontend",
+    "test": "echo 'no tests yet'"
+  }
+}
